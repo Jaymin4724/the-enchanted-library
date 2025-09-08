@@ -38,172 +38,75 @@ The Enchanted Library is a robust, OOP-driven library management system designed
 - **Facade:** Unified interface to subsystems (catalog, users, DB, notifications).
 - **Patterns:** Modular, maintainable, and extensible codebase.
 
-**Abstraction:** Provide simplified interfaces for librarians and visitors to interact with the system.
+**Flow Example:**
+```
+User (main.py) → Controller → Facade → Catalog/DB/Patterns → Controller → User
+```
 
-### 2. Implementation of Creational Design Patterns
-**Factory Pattern:**
+---
 
-o Dynamically create book objects and user roles (Librarian, Scholar, Guest).
+## Design Patterns Used
 
-**Singleton Pattern:**
+- **Factory:** Create users/books dynamically.
+- **Singleton:** Single DB instance.
+- **Builder:** Flexible book creation with metadata.
+- **Facade:** Unified access to all features.
+- **Adapter:** Import legacy records.
+- **Decorator:** Add overdue reminders.
+- **Observer:** Notify librarians on book state changes.
+- **Strategy:** Multiple lending rules.
+- **Command:** Undo/redo actions.
+- **State:** Book status management.
 
-o Ensure a single central catalog system to manage book records.
+---
 
-**Builder Pattern:**
+## Quick Start
 
-o Allow customized book entries, including metadata like preservation requirements, digital access permissions, and lending restrictions.
+1. **Clone the repo:**
+   ```sh
+   git clone https://github.com/Jaymin4724/the-enchanted-library.git
+   cd the-enchanted-library
+   ```
 
-### 3. Implementation of Structural Design Patterns
+2. **Install dependencies:**
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-**Facade Pattern:**
+3. **Configure PostgreSQL:**
+   - Edit `database/database.py` with your DB credentials.
+   - Run the SQL setup in the README to create tables.
 
-o Provide a single library management dashboard for book tracking and user management.
+4. **Run the app:**
+   ```sh
+   python main.py
+   ```
 
-**Adapter Pattern:**
+---
 
-o Integrate legacy handwritten records with the new digital system.
+## Database Schema
 
-**Decorator Pattern:**
+- **books:** ISBN, title, author, status, metadata (JSON)
+- **users:** user_id, name, role, permissions (JSON), password (hashed)
+- **borrowing_records:** record_id, isbn, user_id, borrow_date, due_date, return_date, late_fee
+- **condition_reports:** report_id, isbn, rating, details (JSON), report_date
 
-o Add features dynamically, like automatic overdue reminders or restricted section permissions.
+---
 
-### 4. Implementation of Behavioral Design Patterns
+## Example Usage
 
-**Observer Pattern:**
+- **Register User:** Choose role (Librarian, Scholar, Guest)
+- **Borrow Book:** Select lending type (public, academic, restricted)
+- **Return Book:** Handles late fees automatically
+- **Flag for Restoration:** Track book condition and restoration queue
+- **Undo Last Action:** Revert mistaken borrow/return
+- **Import Legacy Record:** Add books from old handwritten logs
 
-o Notify librarians when books are overdue or need restoration.
+---
 
-**Strategy Pattern:**
+## Why This Project Stands Out
 
-o Implement different book lending rules (Academic Borrowing, Public Lending, Restricted Reading Room).
-
-**Command Pattern:**
-
-o Allow undoable actions, like returning an incorrectly borrowed book.
-
-**State Pattern:**
-
-o Track book status (Available, Borrowed, Reserved, Restoration Needed).
-
-
-
-### 5. Additional Features & Challenges
-
-**Role-Based Access Control:**
-
-o Implement permission levels (e.g., Scholars can access restricted books, General Visitors cannot).
-
-**Automated Late Fee Calculation:**
-
-o Dynamically calculate late fees based on book type and borrowing period.
-
-**Archival & Preservation Module:**
-
-o Automatically flag books for restoration based on condition reports.
-
-**Smart Book Recommendations:**
-
-o Suggest books based on visitor reading history and current research topics.
-
-
-
-# Setup DB : 
-
-(Go to database/database.py and change according to your postgress configurations)
-
-DROP TABLE IF EXISTS borrowing_records;
-
-DROP TABLE IF EXISTS condition_reports;
-
-DROP TABLE IF EXISTS users;
-
-DROP TABLE IF EXISTS books;
-
-
-
-CREATE TABLE books (
-
-    isbn VARCHAR(50) PRIMARY KEY,
-    
-    title VARCHAR(255) NOT NULL,
-    
-    author VARCHAR(255) NOT NULL,
-    
-    status VARCHAR(50) NOT NULL,
-    
-    metadata JSONB
-);
-
-
-
-
-CREATE TABLE users (
-
-    user_id SERIAL PRIMARY KEY,
-    
-    name VARCHAR(255) UNIQUE NOT NULL,
-    
-    role VARCHAR(50) NOT NULL,
-    
-    permissions JSONB,
-    
-    password VARCHAR(255) NOT NULL
-);
-
-
-
-
-CREATE TABLE borrowing_records (
-
-    record_id SERIAL PRIMARY KEY,
-    
-    isbn VARCHAR(50) REFERENCES books(isbn),
-    
-    user_id INTEGER REFERENCES users(user_id),
-    
-    borrow_date TIMESTAMP NOT NULL,
-    
-    due_date TIMESTAMP NOT NULL,
-    
-    return_date TIMESTAMP,
-    
-    late_fee DECIMAL(10, 2)
-);
-
-
-
-
-CREATE TABLE condition_reports (
-
-    report_id SERIAL PRIMARY KEY,
-    
-    isbn VARCHAR(50) REFERENCES books(isbn) UNIQUE,
-    
-    rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 10),
-    
-    details JSONB,
-    
-    report_date TIMESTAMP NOT NULL
-);
-
-
-
-
-```INSERT INTO books (isbn, title, author, status, metadata) VALUES
-
-('ISBN001', 'Mystic Runes', 'Eldoria', 'Available', '{"genre": "Fantasy", "access": "Preserved"}'),
-
-('ISBN002', 'Secrets of the Sphinx', 'Ibrahim', 'Available', '{"genre": "History", "access": "Restricted"}'),
-
-('ISBN003', 'Modern Magic', 'Nova', 'Available', '{"genre": "Fantasy", "access": "General"}'),
-
-('ISBN004', 'Ancient Tomes', 'Unknown', 'Available', '{"genre": "Mystery", "access": "Preserved"}'),
-
-('ISBN005', 'Star Chronicles', 'Cosmo', 'Available', '{"genre": "Sci-Fi", "access": "General"}');```
-
-
-```INSERT INTO condition_reports (isbn, rating, details, report_date) VALUES
-
-('ISBN001', 4, '{"damage": "worn cover"}', '2025-05-01 10:00:00'),
-
-('ISBN004', 3, '{"damage": "faded text, torn pages"}', '2025-05-02 12:00:00');```
+- **Clean OOP Design:** Demonstrates mastery of advanced OOP and design patterns.
+- **Security:** Passwords hashed, role-based permissions.
+- **Extensible:** Easy to add new features or integrate with other systems.
+- **Professional CLI:** User-friendly, visually appealing interface.
