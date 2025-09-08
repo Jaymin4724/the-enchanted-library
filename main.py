@@ -51,7 +51,7 @@ def main():
             new_user = UserFactory.create_user(role, name, [])
             controller.register_user(new_user, password)
             console.print(f"[green]User {name} registered successfully as {role}.[/green]")
-        elif choice == "3":
+        elif choice == "3": 
             isbn = Prompt.ask("Enter book ISBN")
             user_name = Prompt.ask("Enter user name")
             lending_type = Prompt.ask("Enter lending type", choices=["public", "academic", "restricted"], default="public")
