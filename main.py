@@ -57,7 +57,7 @@ def main():
             lending_type = Prompt.ask("Enter lending type", choices=["public", "academic", "restricted"], default="public")
             user = controller.get_user(user_name)
             if not user:
-                console.print(f"[red]User {user_name} not found![/red]")
+                console.print(f"[red]User {user_name} not found! Registration Required.[/red]")
                 continue
             controller.borrow_book(isbn, user, lending_type)
         elif choice == "4":

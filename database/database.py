@@ -18,9 +18,9 @@ class Database:
             self._conn = psycopg2.connect(
                 dbname="Enchanted Library",
                 user="postgres",
-                password="jaymin4724",  # Replace with your PostgreSQL password
+                password="postgress_025",  # Replace with your PostgreSQL password
                 host="localhost",
-                port="5433"
+                port="5432"
             )
             self._cursor = self._conn.cursor(cursor_factory=RealDictCursor)
         except psycopg2.Error as e:

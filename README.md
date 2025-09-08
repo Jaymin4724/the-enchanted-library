@@ -164,10 +164,8 @@ CREATE TABLE condition_reports (
     report_date TIMESTAMP NOT NULL
 );
 
-
-
-
-```INSERT INTO books (isbn, title, author, status, metadata) VALUES
+```
+INSERT INTO books (isbn, title, author, status, metadata) VALUES
 
 ('ISBN001', 'Mystic Runes', 'Eldoria', 'Available', '{"genre": "Fantasy", "access": "Preserved"}'),
 
@@ -177,11 +175,14 @@ CREATE TABLE condition_reports (
 
 ('ISBN004', 'Ancient Tomes', 'Unknown', 'Available', '{"genre": "Mystery", "access": "Preserved"}'),
 
-('ISBN005', 'Star Chronicles', 'Cosmo', 'Available', '{"genre": "Sci-Fi", "access": "General"}');```
+('ISBN005', 'Star Chronicles', 'Cosmo', 'Available', '{"genre": "Sci-Fi", "access": "General"}');
+```
 
 
-```INSERT INTO condition_reports (isbn, rating, details, report_date) VALUES
+```
+INSERT INTO condition_reports (isbn, rating, details, report_date) VALUES
 
 ('ISBN001', 4, '{"damage": "worn cover"}', '2025-05-01 10:00:00'),
 
-('ISBN004', 3, '{"damage": "faded text, torn pages"}', '2025-05-02 12:00:00');```
+('ISBN004', 3, '{"damage": "faded text, torn pages"}', '2025-05-02 12:00:00');
+```
