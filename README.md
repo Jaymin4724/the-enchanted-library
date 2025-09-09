@@ -8,6 +8,21 @@ The Enchanted Library is a robust, OOP-driven library management system designed
 
 ---
 
+## Tech Stack
+
+- **Language:** Python 3
+- **Database:** PostgreSQL
+- **Libraries:** `rich` (CLI UI), `psycopg2` (DB), `bcrypt` (security)
+- **Design Patterns:** Factory, Singleton, Builder, Facade, Adapter, Decorator, Observer, Strategy, Command, State
+
+---
+
+## Demo Video :
+
+**url** : https://drive.google.com/file/d/137rnurUUDk4TdNuWVpTsJkNGUKTQ_IEW/view?usp=drive_link
+
+---
+
 ## Key Features
 
 - **Role-Based Access Control:** Librarian, Scholar, and Guest roles with granular permissions.
@@ -19,15 +34,6 @@ The Enchanted Library is a robust, OOP-driven library management system designed
 - **Legacy Integration:** Adapter pattern to import handwritten/legacy records.
 - **Undo Actions:** Command pattern for undoing borrow/return mistakes.
 - **Overdue Reminders:** Decorator pattern for dynamic notifications.
-
----
-
-## Tech Stack
-
-- **Language:** Python 3
-- **Database:** PostgreSQL
-- **Libraries:** `rich` (CLI UI), `psycopg2` (DB), `bcrypt` (security)
-- **Design Patterns:** Factory, Singleton, Builder, Facade, Adapter, Decorator, Observer, Strategy, Command, State
 
 ---
 
